@@ -18,10 +18,10 @@ import javax.persistence.Embeddable;
 public class SolutionPK implements Serializable {
 
     @Basic(optional = false)
-    @Column(name = "user id")
+    @Column(name = "\"user id\"")
     private int userId;
     @Basic(optional = false)
-    @Column(name = "assignment id")
+    @Column(name = "\"assignment id\"")
     private int assignmentId;
 
     public SolutionPK() {

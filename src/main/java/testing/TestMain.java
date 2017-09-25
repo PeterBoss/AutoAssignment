@@ -5,14 +5,12 @@
  */
 package testing;
 
-import entity.Assignment;
 import entity.Solution;
-import entity.SolutionPK;
-import entity.User;
 import facade.AssignmentFacade;
 import facade.SolutionFacade;
 import facade.UserFacade;
-import java.math.BigDecimal;
+import java.util.List;
+import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
@@ -36,20 +34,14 @@ public class TestMain {
         uf.addEntityManagerFactory(emf);
         af.addEntityManagerFactory(emf);
         sf.addEntityManagerFactory(emf);
-
-        User u1 = new User();
-        Assignment a1 = new Assignment();
-        Solution s1 = new Solution(1, 1);
-
-        u1.setName("Peter");
-        u1.setRating(BigDecimal.valueOf(5));
-        a1.setRating(BigDecimal.valueOf(5));
-
-        uf.addUser(u1);
-        af.addAssignment(a1);
-
-        sf.addSolution(s1);
-
+        
+        EntityManager em = emf.createEntityManager();
+        
+        List<Solution> s1 = em.createNamedQuery("Solution.findAll", Solution.class).getResultList();
+        
+        for (Solution s : s1) {
+            System.out.println(s.getSolutionPK() + " rating: " + s.getRating());
+        }
     }
 
 }

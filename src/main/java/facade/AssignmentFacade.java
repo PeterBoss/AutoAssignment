@@ -41,6 +41,17 @@ public class AssignmentFacade {
         em.close();
         return a;
     }
+    
+    public List<Assignment> getAllAssignments() {
+        EntityManager em = emf.createEntityManager();
+        List<Assignment> assignments;
+        try {
+            assignments = em.createNamedQuery("Assignment.findAll", Assignment.class).getResultList();
+        } finally {
+            em.close();
+        }
+        return assignments;
+    }
 
     public void updateAssignment(Assignment a) {
         EntityManager em = emf.createEntityManager();

@@ -39,18 +39,18 @@ public class Solution implements Serializable {
     private static final long serialVersionUID = 1L;
     @EmbeddedId
     protected SolutionPK solutionPK;
-    @Column(name = "time spent")
+    @Column(name = "\"time spent\"")
     @Temporal(TemporalType.TIME)
     private Date timeSpent;
-    @Column(name = "number of errors")
+    @Column(name = "\"number of errors\"")
     private Integer numberOfErrors;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Column(name = "rating")
+    @Column(name = "\"rating\"")
     private BigDecimal rating;
-    @JoinColumn(name = "assignment id", referencedColumnName = "id", insertable = false, updatable = false)
+    @JoinColumn(name = "\"assignment id\"", referencedColumnName = "id", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Assignment assignment;
-    @JoinColumn(name = "user id", referencedColumnName = "id", insertable = false, updatable = false)
+    @JoinColumn(name = "\"user id\"", referencedColumnName = "id", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private User user;
 

@@ -6,6 +6,7 @@
 package facade;
 
 import entity.Solution;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 
@@ -29,14 +30,15 @@ public class SolutionFacade {
         em.close();
     }
 
-    public Solution getSolution(int id) {
-        Solution s;
+    public List<Solution> getAllSolutions() { //doesnt work
         EntityManager em = emf.createEntityManager();
-        em.getTransaction().begin();
-        s = em.find(Solution.class, id);
-        em.getTransaction().commit();
-        em.close();
-        return s;
+        List<Solution> solutions;
+        try {
+            solutions = em.createNamedQuery("Solution.findAll", Solution.class).getResultList();
+        } finally {
+            em.close();
+        }
+        return solutions;
     }
 
     public void updateSolution(Solution s) {
