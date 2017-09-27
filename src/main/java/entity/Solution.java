@@ -40,7 +40,7 @@ public class Solution implements Serializable {
     @EmbeddedId
     protected SolutionPK solutionPK;
     @Column(name = "\"time spent\"")
-    @Temporal(TemporalType.TIME)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date timeSpent;
     @Column(name = "\"number of errors\"")
     private Integer numberOfErrors;
