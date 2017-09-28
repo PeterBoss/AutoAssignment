@@ -30,8 +30,8 @@ public class SolutionFacade {
         em.getTransaction().commit();
         em.close();
     }
-    
-    public Solution getSolution(int userId, int assignmentId) {
+
+    public Solution getSpecificSolution(int userId, int assignmentId) {
         EntityManager em = emf.createEntityManager();
         Solution solution;
         SolutionPK key = new SolutionPK(userId, assignmentId);
@@ -40,6 +40,18 @@ public class SolutionFacade {
         em.getTransaction().commit();
         em.close();
         return solution;
+    }
+
+    public List<Solution> getSolutionsByUser(int userId) {
+        EntityManager em = emf.createEntityManager();
+        List<Solution> solutions;
+        try {
+            solutions = em.createNamedQuery("Solution.findByUserId").setParameter("userId", userId).getResultList();
+        } finally {
+            em.close();
+        }
+        return solutions;
+
     }
 
     public List<Solution> getAllSolutions() {
