@@ -42,6 +42,17 @@ public class AssignmentFacade {
         return a;
     }
     
+    public List<Assignment>  getAssignmentByRating(BigDecimal bd){
+        EntityManager em = emf.createEntityManager();
+        List<Assignment> assignments;
+        try {
+            assignments = em.createNamedQuery("Assignment.findByRating", Assignment.class).setParameter("rating", bd).getResultList();
+        } finally {
+            em.close();
+        }
+        return assignments;
+    }
+    
     public List<Assignment> getAllAssignments() {
         EntityManager em = emf.createEntityManager();
         List<Assignment> assignments;
