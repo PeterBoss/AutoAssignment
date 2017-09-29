@@ -6,8 +6,6 @@
 package facade;
 
 import entity.Assignment;
-import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -42,11 +40,11 @@ public class AssignmentFacade {
         return a;
     }
     
-    public List<Assignment>  getAssignmentByRating(BigDecimal bd){
+    public List<Assignment>  getAssignmentByRating(float rating){
         EntityManager em = emf.createEntityManager();
         List<Assignment> assignments;
         try {
-            assignments = em.createNamedQuery("Assignment.findByRating", Assignment.class).setParameter("rating", bd).getResultList();
+            assignments = em.createNamedQuery("Assignment.findByRating", Assignment.class).setParameter("rating", rating).getResultList();
         } finally {
             em.close();
         }
@@ -63,6 +61,8 @@ public class AssignmentFacade {
         }
         return assignments;
     }
+    
+//    public List<Assignment> getAssignmentsInRange(BigDecimal min, BigDecimal max)
 
     public void updateAssignment(Assignment a) {
         EntityManager em = emf.createEntityManager();

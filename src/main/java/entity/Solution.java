@@ -45,8 +45,8 @@ public class Solution implements Serializable {
     @Column(name = "\"number of errors\"")
     private Integer numberOfErrors;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Column(name = "\"rating\"")
-    private BigDecimal rating;
+    @Column(name = "\"rating\"", columnDefinition = "DECIMAL(2,1)")
+    private float rating;
     @JoinColumn(name = "\"assignment id\"", referencedColumnName = "id", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Assignment assignment;
@@ -89,11 +89,11 @@ public class Solution implements Serializable {
         this.numberOfErrors = numberOfErrors;
     }
 
-    public BigDecimal getRating() {
+    public float getRating() {
         return rating;
     }
 
-    public void setRating(BigDecimal rating) {
+    public void setRating(float rating) {
         this.rating = rating;
     }
 

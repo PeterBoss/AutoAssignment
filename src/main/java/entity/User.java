@@ -43,8 +43,8 @@ public class User implements Serializable {
     @Column(name = "id")
     private Integer id;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Column(name = "rating")
-    private BigDecimal rating;
+    @Column(name = "rating", columnDefinition = "DECIMAL(2,1)")
+    private float rating;
     @Column(name = "name")
     private String name;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
@@ -65,11 +65,11 @@ public class User implements Serializable {
         this.id = id;
     }
 
-    public BigDecimal getRating() {
+    public float getRating() {
         return rating;
     }
 
-    public void setRating(BigDecimal rating) {
+    public void setRating(float rating) {
         this.rating = rating;
     }
 
