@@ -62,7 +62,20 @@ public class AssignmentFacade {
         return assignments;
     }
     
-//    public List<Assignment> getAssignmentsInRange(BigDecimal min, BigDecimal max)
+    public List<Assignment> getAssignmentsInRange(float min, float max) {
+        EntityManager em = emf.createEntityManager();
+        List<Assignment> assignments;
+        try {
+            assignments = em.createQuery("SELECT a FROM Assignment a WHERE a.rating >= :min AND a.rating <= :max")
+                    .setParameter("min", min)
+                    .setParameter("max", max)
+                    .getResultList();
+        } finally {
+            em.close();
+        }
+        
+        return assignments;
+    }
 
     public void updateAssignment(Assignment a) {
         EntityManager em = emf.createEntityManager();
