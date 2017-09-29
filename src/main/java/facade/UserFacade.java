@@ -1,11 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package facade;
 
 import entity.User;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 
@@ -37,6 +33,20 @@ public class UserFacade {
         em.getTransaction().commit();
         em.close();
         return u;
+    }
+    
+    public List<User> getUsersInRange(float min, float max) {
+        EntityManager em = emf.createEntityManager();
+        List<User> users;
+        try {
+            users = em.createQuery("SELECT u FROM User u WHERE u.rating >= :min AND u.rating <= :max")
+                    .setParameter("min", min)
+                    .setParameter("max", max)
+                    .getResultList();
+        } finally {
+            em.close();
+        }
+        return users;
     }
 
     public void updateUser(User u) {
