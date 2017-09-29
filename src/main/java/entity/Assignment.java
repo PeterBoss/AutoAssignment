@@ -42,7 +42,7 @@ public class Assignment implements Serializable {
     @Column(name = "id")
     private Integer id;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Column(name = "rating", columnDefinition = "DECIMAL(2,1)")
+    @Column(name = "rating", columnDefinition = "DECIMAL(3,1)")
     private float rating;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "assignment")
     private Collection<Solution> solutionCollection;

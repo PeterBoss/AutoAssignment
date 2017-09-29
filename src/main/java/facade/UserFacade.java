@@ -21,7 +21,7 @@ public class UserFacade {
         this.emf = emf;
     }
 
-    public void addUser(User u) {  //should propably return something
+    public void addUser(User u) {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
         em.persist(u);

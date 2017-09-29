@@ -6,7 +6,6 @@
 package entity;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
@@ -45,7 +44,7 @@ public class Solution implements Serializable {
     @Column(name = "\"number of errors\"")
     private Integer numberOfErrors;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Column(name = "\"rating\"", columnDefinition = "DECIMAL(2,1)")
+    @Column(name = "\"rating\"", columnDefinition = "DECIMAL(3,1)")
     private float rating;
     @JoinColumn(name = "\"assignment id\"", referencedColumnName = "id", insertable = false, updatable = false)
     @ManyToOne(optional = false)

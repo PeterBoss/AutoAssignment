@@ -51,7 +51,6 @@ public class SolutionFacade {
             em.close();
         }
         return solutions;
-
     }
 
     public List<Solution> getAllSolutions() {
@@ -65,13 +64,4 @@ public class SolutionFacade {
         return solutions;
     }
 
-    public void updateSolution(Solution s) {
-        
-       
-
-    }
-
-    public void deleteSolution(Solution s) {
-
-    }
 }
